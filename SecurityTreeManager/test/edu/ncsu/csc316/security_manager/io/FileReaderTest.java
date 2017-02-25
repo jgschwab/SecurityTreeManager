@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class LogFileReaderTest {
+public class FileReaderTest {
 
 	@Test
 	public void test() {

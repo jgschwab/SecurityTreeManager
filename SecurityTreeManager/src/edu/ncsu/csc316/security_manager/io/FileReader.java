@@ -1,6 +1,6 @@
 package edu.ncsu.csc316.security_manager.io;
 
-import edu.ncsu.csc316.security_manager.list.AttackList;
+import edu.ncsu.csc316.security_manager.list.Queue;
 import edu.ncsu.csc316.security_manager.log.LogEntry;
 
 /**
@@ -14,7 +14,7 @@ public class FileReader {
 	 * AttackList of AttackSteps to use for building
 	 * the AttackTree
 	 */
-	public AttackList readAttackTraversal(String fileName){
+	public Queue readAttackTraversal(String fileName){
 		return null;
 	}
 	

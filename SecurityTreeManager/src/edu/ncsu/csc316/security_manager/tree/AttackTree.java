@@ -1,7 +1,7 @@
 package edu.ncsu.csc316.security_manager.tree;
 
 import edu.ncsu.csc316.security_manager.attack.AttackStep;
-import edu.ncsu.csc316.security_manager.list.AttackList;
+import edu.ncsu.csc316.security_manager.list.Queue;
 
 /**
  * The Attack Tree, which is a general tree that
@@ -24,7 +24,7 @@ public class AttackTree {
 	 */
 	public class AttackNode{
 		private AttackStep data;
-		private AttackList children;
+		private Queue<AttackNode> children;
 		public AttackNode(AttackStep data){
 			this.data = data;
 			this.children = null;
@@ -35,7 +35,7 @@ public class AttackTree {
 		 * @param s
 		 */
 		public void addChild(AttackNode n){
-			this.children.add(n);
+			this.children.enqueue(n);
 		}
 	}
 }
