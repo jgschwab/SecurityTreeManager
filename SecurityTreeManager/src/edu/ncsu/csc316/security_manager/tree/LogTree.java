@@ -30,4 +30,8 @@ public class LogTree {
 			this.right = right;
 		}
 	}
+	
+	public void add(LogNode n){
+		//TODO implement recursive algorithm
+	}
 }
