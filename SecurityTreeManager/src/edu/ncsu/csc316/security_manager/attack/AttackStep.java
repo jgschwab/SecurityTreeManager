@@ -99,4 +99,31 @@ public class AttackStep {
 	public String getDesc() {
 		return desc;
 	}
+
+	/**
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AttackStep other = (AttackStep) obj;
+		if (Double.doubleToLongBits(cost) != Double.doubleToLongBits(other.cost))
+			return false;
+		if (desc == null) {
+			if (other.desc != null)
+				return false;
+		} else if (!desc.equals(other.desc))
+			return false;
+		if (Double.doubleToLongBits(impact) != Double.doubleToLongBits(other.impact))
+			return false;
+		if (Double.doubleToLongBits(prob) != Double.doubleToLongBits(other.prob))
+			return false;
+		if (tag != other.tag)
+			return false;
+		return true;
+	}
+	*/
 }

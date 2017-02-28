@@ -8,29 +8,18 @@ public class Date implements Comparable<Date>{
 	private int month;
 	/** The day */
 	private int day;
-	/** The hour */
-	private int hour;
-	/** The minute */
-	private int min;
-	/** The second */
-	private int sec;
+	
 	
 	/**
 	 * Constructs a Date object which keeps track of 6 temporal values
 	 * @param year The year
 	 * @param month The month
 	 * @param day The day
-	 * @param hour The hour
-	 * @param min The minute
-	 * @param sec The second
 	 */
-	public Date(int year, int month, int day, int hour, int min, int sec){
+	public Date(int year, int month, int day){
 		this.year = year;
 		this.month = month;
 		this.day = day;
-		this.hour = hour;
-		this.min = min;
-		this.sec = sec;
 	}
 	
 	/**
@@ -57,30 +46,7 @@ public class Date implements Comparable<Date>{
 		return day;
 	}
 
-	/**
-	 * Gets the Hour of this Date
-	 * @return The hour
-	 */
-	public int getHour() {
-		return hour;
-	}
-
-	/**
-	 * Gets the minute of this Date
-	 * @return The minute
-	 */
-	public int getMin() {
-		return min;
-	}
 	
-	/**
-	 * Gets the second of this Date
-	 * @return The second
-	 */
-	public int getSec() {
-		return sec;
-	}
-
 	/**
 	 * Converts this Date into a String
 	 * @return this Date as a String
@@ -88,10 +54,7 @@ public class Date implements Comparable<Date>{
 	@Override
 	public String toString(){
 		return "" + year + "/" + String.format("%02d", month) 
-				+ "/" + String.format("%02d", day) 
-				+ " " + String.format("%02d", hour)
-				+ ":" + String.format("%02d", min) 
-				+ ":" + String.format("%02d", sec);
+				+ "/" + String.format("%02d", day);
 	}
 	
 	/**
@@ -107,12 +70,6 @@ public class Date implements Comparable<Date>{
 			return this.month > other.getMonth() ? 1 : -1;
 		} else if(this.day != other.getDay()){
 			return this.day > other.getDay() ? 1 : -1;
-		} else if(this.hour != other.getHour()){
-			return this.hour > other.getHour() ? 1 : -1;
-		} else if(this.min != other.getMin()){
-			return this.min > other.getMin() ? 1 : -1;
-		} else if(this.sec != other.getSec()){
-			return this.sec > other.getSec() ? 1 : -1;
 		} else {
 			return 0;
 		}

@@ -6,8 +6,16 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
+/**
+ * Tests the generic Queue class
+ * @author Justin Schwab
+ *
+ */
 public class QueueTest {
 
+	/**
+	 * Tests the methods in the Queue class
+	 */
 	@Test
 	public void test() {
 		Queue<String> q1 = new Queue<String>();
@@ -37,13 +45,13 @@ public class QueueTest {
 		q1.enqueue("sceptile");
 		assertEquals(4, q1.size());
 		
-		assertEquals("sceptile", q1.dequeue());
-		assertEquals(3, q1.size());
-		assertEquals("flygon", q1.dequeue());
-		assertEquals(2, q1.size());
-		assertEquals("charmander", q1.dequeue());
-		assertEquals(1, q1.size());
 		assertEquals("pikachu", q1.dequeue());
+		assertEquals(3, q1.size());
+		assertEquals("charmander", q1.dequeue());
+		assertEquals(2, q1.size());
+		assertEquals("flygon", q1.dequeue());
+		assertEquals(1, q1.size());
+		assertEquals("sceptile", q1.dequeue());
 		assertEquals(0, q1.size());
 		assertTrue(q1.isEmpty());
 		try{

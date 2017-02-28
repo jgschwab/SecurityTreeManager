@@ -9,8 +9,10 @@ import java.util.NoSuchElementException;
  */
 public class Queue<E> {
 	
+	/** The number of elements in the queue */
 	private int size;
-	private Node<E> back;
+	/** Reference to the last element of the queue */
+	private Node<E> tail;
 	
 	/**
 	 * Defines the Node in this linked queue
@@ -26,12 +28,11 @@ public class Queue<E> {
 		}
 	}
 	/**
-	 * Constructs the LinkedQueue with the parameterized capacity
-	 * Note that the FRONT of the LinkedList refers to the FRONT of the Queue
+	 * Constructs the Linked Queue of size 0
 	 */
 	public Queue(){
 		size = 0;
-		back = null;
+		tail = null;
 	}
 	
 	/**
@@ -40,11 +41,13 @@ public class Queue<E> {
 	 */
 	public void enqueue(E element) {
 		if(size == 0){
-			back = new Node<E>(element, null);
+			tail = new Node<E>(element, null);
 		} else if(size == 1){
-			back.next = new Node<E>(element, back);
+			tail.next = new Node<E>(element, tail);
+			tail = tail.next;
 		} else {
-			back.next = new Node<E>(element, back.next);
+			tail.next = new Node<E>(element, tail.next);
+			tail = tail.next;
 		}
 		size++;
 	}
@@ -58,11 +61,11 @@ public class Queue<E> {
 		if(size == 0){
 			throw new NoSuchElementException("Queue is empty; cannot dequeue.");
 		} else if(size == 1){
-			element = back.data;
-			back = null;
+			element = tail.data;
+			tail = null;
 		} else {
-			Node<E> temp = back.next;
-			back.next = back.next.next;
+			Node<E> temp = tail.next;
+			tail.next = tail.next.next;
 			element = temp.data;
 			temp.next = null; // garbage-collect
 		}

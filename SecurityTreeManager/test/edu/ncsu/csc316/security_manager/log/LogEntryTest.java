@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ncsu.csc316.security_manager.date.Date;
+import edu.ncsu.csc316.security_manager.date.TimeStamp;
 
 /**
  * Tests the LogEntry class
@@ -17,8 +17,8 @@ public class LogEntryTest {
 	 */
 	@Test
 	public void test() {
-		Date d1 = new Date(1995, 8, 31, 18, 45, 0);
-		Date d2 = new Date(2017, 3, 3, 23, 45, 0);
+		TimeStamp d1 = new TimeStamp(1995, 8, 31, 18, 45, 0);
+		TimeStamp d2 = new TimeStamp(2017, 3, 3, 23, 45, 0);
 		
 		LogEntry le1 = new LogEntry(d1, "jgschwab", "justin was born");
 		LogEntry le2 = new LogEntry(d1, "jgschwab", "muh birthday");
@@ -48,5 +48,4 @@ public class LogEntryTest {
 		assertTrue(le1.compareTo(le4) < 0);
 		assertTrue(le4.compareTo(le1) > 0);
 	}
-
 }

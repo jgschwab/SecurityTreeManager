@@ -6,12 +6,17 @@ import edu.ncsu.csc316.security_manager.list.Queue;
 /**
  * The Attack Tree, which is a general tree that
  * stores AttackSteps as AttackNodes
+ * 
  * @author Justin Schwab
- *
  */
 public class AttackTree {
+	/** The root of the Attack Tree */
 	public AttackNode root;
 	
+	/**
+	 * Constructs an attack tree with a root Node
+	 * @param root The root node to start the Attack Tree
+	 */
 	public AttackTree(AttackStep root){
 		this.root = new AttackNode(root);
 	}
@@ -23,8 +28,15 @@ public class AttackTree {
 	 *
 	 */
 	public class AttackNode{
+		/** The AttackStep data associated with each node */
 		private AttackStep data;
+		/** The list of children for each node */
 		private Queue<AttackNode> children;
+		
+		/**
+		 * Constructs a node with specified data
+		 * @param data The AttackStep to store in this node
+		 */
 		public AttackNode(AttackStep data){
 			this.data = data;
 			this.children = null;

@@ -4,11 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Tests the LogTree class
+ * @author Justin Schwab
+ *
+ */
 public class LogTreeTest {
 
+	/**
+	 * Tests the methods in the LogTree class
+	 */
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		// nothing to test yet
 	}
-
 }

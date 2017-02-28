@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import edu.ncsu.csc316.security_manager.attack.AttackStep;
 import edu.ncsu.csc316.security_manager.date.Date;
+import edu.ncsu.csc316.security_manager.date.Time;
+import edu.ncsu.csc316.security_manager.date.TimeStamp;
 import edu.ncsu.csc316.security_manager.list.Queue;
 import edu.ncsu.csc316.security_manager.log.LogEntry;
 
@@ -19,20 +21,22 @@ public class FileReader {
 	 * Reads an Attack tree traversal file; returns a
 	 * Queue of AttackSteps to use for building
 	 * the AttackTree
+	 * @throws FileNotFoundException 
 	 */
-	public Queue<AttackStep> readAttackTraversal(String fileName){
-		Scanner fileScan;
+	public static Queue<AttackStep> readAttackTraversal(String fileName) {
+		Scanner fileScan = null;
 		try{
 			fileScan = new Scanner(new File(fileName));
 		}catch(FileNotFoundException e){
-			throw new IllegalArgumentException("File doesn't exist");
+			throw new IllegalArgumentException("File not found");
 		}
+		
 		Queue<AttackStep> list = new Queue<AttackStep>();
 		while(fileScan.hasNextLine()){
 			list.enqueue(readAttackStep(fileScan.nextLine()));
 		}
 		fileScan.close();
-		return null;
+		return list;
 	}
 	
 	/**
@@ -52,9 +56,9 @@ public class FileReader {
 			prob = lineScan.nextDouble();
 			impact = lineScan.nextDouble();
 			cost = lineScan.nextDouble();
-		} else{ //internal node
-			desc = lineScan.nextLine(); 
-		}
+		} 
+		desc = lineScan.nextLine().trim(); 
+		
 		lineScan.close();
 		return new AttackStep(tag, prob, impact, cost, desc);
 	}
@@ -63,14 +67,17 @@ public class FileReader {
 	 * Reads a log entry file; returns a
 	 * Queue of LogEntries to use for building
 	 * the LogTree
+	 * @throws FileNotFoundException 
 	 */
-	public Queue<LogEntry> readLogFile(String fileName){
-		Scanner fileScan;
+	public static Queue<LogEntry> readLogFile(String fileName) {
+		
+		Scanner fileScan = null;
 		try{
 			fileScan = new Scanner(new File(fileName));
 		}catch(FileNotFoundException e){
-			throw new IllegalArgumentException("File doesn't exist");
+			throw new IllegalArgumentException("File not found");
 		}
+		
 		Queue<LogEntry> list = new Queue<LogEntry>();
 		while(fileScan.hasNextLine()){
 			list.enqueue(readLogEntry(fileScan.nextLine()));
@@ -88,7 +95,7 @@ public class FileReader {
 	private static LogEntry readLogEntry(String line) {
 		Scanner lineScan = new Scanner(line);
 		lineScan.useDelimiter(",");
-		Date timestamp = parseTimestamp(lineScan.next());
+		TimeStamp timestamp = parseTimestamp(lineScan.next());
 		String user = lineScan.next();
 		String desc = lineScan.next();
 		lineScan.close();
@@ -100,8 +107,8 @@ public class FileReader {
 	 * @param time The String to parse into a Date
 	 * @return The Date object parsed from the input String
 	 */
-	private static Date parseTimestamp(String time) {
-		Scanner timeScan = new Scanner(time);
+	private static TimeStamp parseTimestamp(String timeStamp) {
+		Scanner timeScan = new Scanner(timeStamp);
 		String ymd = timeScan.next();
 		String hms = timeScan.next();
 		timeScan.close();
@@ -110,13 +117,12 @@ public class FileReader {
 		int month = timeScan.nextInt();
 		int day = timeScan.nextInt();
 		int year = timeScan.nextInt();
+		Date date = new Date(year, month, day);
 		timeScan.close();
 		timeScan = new Scanner(hms);
 		timeScan.useDelimiter(":");
-		int hour = timeScan.nextInt();
-		int min = timeScan.nextInt();
-		int sec = timeScan.nextInt();
+		Time time = new Time(timeScan.nextInt(),timeScan.nextInt(),timeScan.nextInt());
 		timeScan.close();
-		return new Date(year, month, day, hour, min, sec);
+		return new TimeStamp(date, time);
 	}
 }

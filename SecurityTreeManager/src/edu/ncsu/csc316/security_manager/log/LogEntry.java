@@ -1,6 +1,6 @@
 package edu.ncsu.csc316.security_manager.log;
 
-import edu.ncsu.csc316.security_manager.date.Date;
+import edu.ncsu.csc316.security_manager.date.TimeStamp;
 
 /**
  * A Log entry object. Stored in the LogTree data structure
@@ -9,7 +9,7 @@ import edu.ncsu.csc316.security_manager.date.Date;
 public class LogEntry implements Comparable<LogEntry>{
 
 	/** The timestamp of this log entry */
-	private Date timestamp;
+	private TimeStamp timestamp;
 	/** the user associated with this log entry */
 	private String user;
 	/** The description associated with this log entry */
@@ -21,7 +21,7 @@ public class LogEntry implements Comparable<LogEntry>{
 	 * @param user The user who generated this LogEntry
 	 * @param desc The description of this LogEntry
 	 */
-	public LogEntry(Date timestamp, String user, String desc){
+	public LogEntry(TimeStamp timestamp, String user, String desc){
 		this.timestamp = timestamp;
 		this.user = user;
 		this.desc = desc;
@@ -31,7 +31,7 @@ public class LogEntry implements Comparable<LogEntry>{
 	 * Gets the timestamp of this log entry
 	 * @return The timestamp of this log entry
 	 */
-	public Date getTimestamp() {
+	public TimeStamp getTimeStamp() {
 		return timestamp;
 	}
 
@@ -68,8 +68,8 @@ public class LogEntry implements Comparable<LogEntry>{
 	 */
 	@Override
 	public int compareTo(LogEntry o) {
-		if(timestamp.compareTo(o.getTimestamp()) != 0){
-			return timestamp.compareTo(o.getTimestamp());
+		if(timestamp.compareTo(o.getTimeStamp()) != 0){
+			return timestamp.compareTo(o.getTimeStamp());
 		} else if(user.compareTo(o.getUser()) != 0){
 			return user.compareTo(o.getUser());
 		} else if(desc.compareTo(o.getDesc()) != 0){

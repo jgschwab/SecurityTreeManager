@@ -1,14 +1,33 @@
 package edu.ncsu.csc316.security_manager.manager;
 
 import edu.ncsu.csc316.security_manager.attack.AttackStep;
+import edu.ncsu.csc316.security_manager.io.FileReader;
+import edu.ncsu.csc316.security_manager.list.Queue;
+import edu.ncsu.csc316.security_manager.log.LogEntry;
 import edu.ncsu.csc316.security_manager.tree.AttackTree;
 import edu.ncsu.csc316.security_manager.tree.LogTree;
+import edu.ncsu.csc316.security_manager.tree.LogTree.LogNode;
 
+/**
+ * The main class in the model part of this software.
+ * Contains an Attack tree which is produced from the
+ * buildAttackTree() method and a Log tree which one 
+ * can search using the getLogEntriesForDate() method.
+ * 
+ * @author Justin Schwab
+ */
 public class SecurityTreeManager {
+	/** The Attack tree for this SecurityTreeManager */
 	private AttackTree atkTree;
+	/** The Log entry tree for this SecurityTreeManager */
 	private LogTree logTree;
 	
-	public void buildAttackTree(AttackStep[] preorder, AttackStep[] postOrder){
+	/**
+	 * Builds The attack tree using a preorder list and postorder list
+	 * @param preorder The preorder list to build the attack tree from
+	 * @param postOrder The postorder list to build the attack tree from
+	 */
+	public void buildAttackTree(Queue<AttackStep> preorder, Queue<AttackStep> postOrder){
 		//TODO implement
 	}
 	
@@ -29,7 +48,11 @@ public class SecurityTreeManager {
      * @param filePath - the path to the log entry file
      */
 	public SecurityTreeManager(String filePath){
-		//TODO implement
+		logTree = new LogTree();
+		Queue<LogEntry> logs = FileReader.readLogFile(filePath);
+		while(!logs.isEmpty()){
+			logTree.add(new LogNode(logs.dequeue()));
+		}
 	}
 	
 	
@@ -96,7 +119,11 @@ public class SecurityTreeManager {
      * @return the string representation of the log entries for the specified date
      */
 	public String getLogEntriesForDate(String date){
-		return null;
-		//TODO implement
+		Queue<LogEntry> levelOrderList = logTree.lookUp(date);
+		StringBuilder sb = new StringBuilder();
+		while(!levelOrderList.isEmpty()){
+			sb.append(levelOrderList.dequeue().toString() + "\n");
+		}
+		return sb.toString();
 	}
 }

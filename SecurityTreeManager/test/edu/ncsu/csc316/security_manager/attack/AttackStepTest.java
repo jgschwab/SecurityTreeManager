@@ -4,8 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Tests the AttackStep class
+ * @author Justin Schwab
+ *
+ */
 public class AttackStepTest {
 
+	/**
+	 * Tests the methods in AttackStep
+	 */
 	@Test
 	public void test() {
 		AttackStep as0 = new AttackStep('G', 0.52, 6.3, 52000, "description of the goal");

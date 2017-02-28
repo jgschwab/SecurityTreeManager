@@ -5,18 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Tests the Date class
+ * Tests the TimeStamp class
  * @author Justin Schwab
  *
  */
-public class DateTest {
+public class TimeStampTest {
 
 	/**
 	 * Tests the methods in the Date class
 	 */
 	@Test
 	public void test() {
-		Date d1 = new Date(1995, 8, 31, 17, 5, 1);
+		TimeStamp d1 = new TimeStamp(1995, 8, 31, 17, 5, 1);
 		assertEquals(1995, d1.getYear());
 		assertEquals(8, d1.getMonth());
 		assertEquals(31, d1.getDay());
@@ -26,12 +26,12 @@ public class DateTest {
 		
 		assertEquals("1995/08/31 17:05:01", d1.toString());
 		
-		Date d2 = new Date(1995, 8, 31, 17, 5, 37);
-		Date d3 = new Date(1995, 8, 31, 17, 6, 21);
-		Date d4 = new Date(1995, 8, 31, 12, 8, 9);
-		Date d5 = new Date(1995, 8, 21, 3, 59, 31);
-		Date d6 = new Date(1995, 7, 1, 17, 6, 21);
-		Date d7 = new Date(2016, 8, 31, 17, 30, 0);
+		TimeStamp d2 = new TimeStamp(1995, 8, 31, 17, 5, 37);
+		TimeStamp d3 = new TimeStamp(1995, 8, 31, 17, 6, 21);
+		TimeStamp d4 = new TimeStamp(1995, 8, 31, 12, 8, 9);
+		TimeStamp d5 = new TimeStamp(1995, 8, 21, 3, 59, 31);
+		TimeStamp d6 = new TimeStamp(1995, 7, 1, 17, 6, 21);
+		TimeStamp d7 = new TimeStamp(2016, 8, 31, 17, 30, 0);
 		
 		assertTrue(d1.compareTo(d1) == 0);
 		
@@ -53,5 +53,4 @@ public class DateTest {
 		assertTrue(d1.compareTo(d7) < 0);
 		assertTrue(d7.compareTo(d1) > 0);
 	}
-
 }
