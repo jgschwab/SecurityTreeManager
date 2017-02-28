@@ -89,8 +89,12 @@ public class SecurityTreeManager {
      * @return the level order traversal (as a string) of the log tree
      */
 	public String getLogTreeLevelOrder(){
-		return null;
-		//TODO implement
+		Queue<LogEntry> list = logTree.levelOrder();
+		StringBuilder sb = new StringBuilder();
+		while(!list.isEmpty()){
+			sb.append("   " + list.dequeue().toString() + "\n");
+		}
+		return "LevelOrder[\n" + sb.toString() + "]";
 	}
 	
 	
@@ -119,11 +123,12 @@ public class SecurityTreeManager {
      * @return the string representation of the log entries for the specified date
      */
 	public String getLogEntriesForDate(String date){
-		Queue<LogEntry> levelOrderList = logTree.lookUp(date);
+		Queue<LogEntry> inOrderList = logTree.lookUp(date);
 		StringBuilder sb = new StringBuilder();
-		while(!levelOrderList.isEmpty()){
-			sb.append(levelOrderList.dequeue().toString() + "\n");
+		while(inOrderList.size() > 1){
+			sb.append(inOrderList.dequeue().toString() + "\n");
 		}
+		sb.append(inOrderList.dequeue().toString());
 		return sb.toString();
 	}
 }

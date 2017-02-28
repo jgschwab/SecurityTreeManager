@@ -75,7 +75,7 @@ public class LogTree {
 		private LogNode right;
 		
 		/**
-		 * Constructs a LogNode, given its LogEntry and children
+		 * Constructs a LogNode, given its LogEntry data
 		 * @param data The LogEntry that this LogNode represents
 		 */
 		public LogNode(LogEntry data){
@@ -89,20 +89,68 @@ public class LogTree {
 	 * @param date The date to find entries for
 	 * @return The list of entries from that day
 	 */
-	public Queue<LogEntry> lookUp(String date) {
+	public Queue<LogEntry> lookUp(String dateStr) {
 		Queue<LogEntry> list = new Queue<LogEntry>();
-		Scanner dateScan = new Scanner(date);
+		Scanner dateScan = new Scanner(dateStr);
 		dateScan.useDelimiter("-");
-		Date day = new Date(Integer.parseInt(dateScan.next()),
-						Integer.parseInt(dateScan.next()),
-						Integer.parseInt(dateScan.next()));
+		int month = Integer.parseInt(dateScan.next());
+		int day = Integer.parseInt(dateScan.next());
+		int year = Integer.parseInt(dateScan.next());
+		Date date = new Date(year, month, day);
 		dateScan.close();
 		LogNode n = root;
-		//while...
-		
-		
+		while(date.compareTo(n.data.getTimeStamp().getDate()) != 0){ //maybe could have done this recursively...
+			if(date.compareTo(n.data.getTimeStamp().getDate()) < 0){
+				if(n.left == null){
+					return list;
+				}else{
+					n = n.left;
+				}
+			}else if(date.compareTo(n.data.getTimeStamp().getDate()) > 0){
+				if(n.right == null){
+					return list;
+				}else{
+					n = n.right;
+				}
+			}
+		}
+		inOrderSearch(n, list, date);
 		return list;
 	}
 
-	
+	/**
+	 * Recursive helper to in-order traverse the relevant subtree
+	 * @param n The top node of the in-order traversal
+	 * @param list The list of log entries to add to
+	 * @param date The date to search for in log entries
+	 */
+	private void inOrderSearch(LogNode n, Queue<LogEntry> list, Date date) {
+		if(n.left != null)
+			inOrderSearch(n.left, list, date);
+		if(n.data.getTimeStamp().getDate().compareTo(date) == 0)
+			list.enqueue(n.data);
+		if(n.right != null)
+			inOrderSearch(n.right, list, date);
+	}
+
+	/**
+	 * Generates a level-order traversal and returns it as a queue
+	 * @return A level-order traversal of this log tree
+	 */
+	public Queue<LogEntry> levelOrder() {
+		Queue<LogEntry> list = new Queue<LogEntry>();
+		Queue<LogNode> Q = new Queue<LogNode>();
+		if(root == null)
+			return list;
+		Q.enqueue(root);
+		while(!Q.isEmpty()){
+			LogNode q = Q.dequeue();
+			list.enqueue(q.data);
+			if(q.left != null)
+				Q.enqueue(q.left);
+			if(q.right != null)
+				Q.enqueue(q.right);			
+		}
+		return list;
+	}
 }
