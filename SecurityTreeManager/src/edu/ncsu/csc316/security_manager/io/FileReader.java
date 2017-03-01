@@ -19,7 +19,7 @@ import edu.ncsu.csc316.security_manager.log.LogEntry;
 public class FileReader {
 	/**
 	 * Reads an Attack tree traversal file; returns a
-	 * Queue of AttackSteps to use for building
+	 * Queue of AttackNodes to use for building
 	 * the AttackTree
 	 * @throws FileNotFoundException 
 	 */
@@ -46,9 +46,9 @@ public class FileReader {
 	 */
 	private static AttackStep readAttackStep(String line){
 		char tag = ' ';
-		double prob = -1;
-		double impact = -1;
-		double cost = -1;
+		double prob = 0;
+		double impact = 0;
+		double cost = 0;
 		String desc = null;
 		Scanner lineScan = new Scanner(line);
 		tag = lineScan.next().charAt(0);

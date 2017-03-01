@@ -99,8 +99,28 @@ public class AttackStep {
 	public String getDesc() {
 		return desc;
 	}
+	
+	@Override
+	public String toString(){
+		String tag;
+		if(this.getTag() == 'G'){
+			tag = "GOAL";
+		} else if(this.getTag() == 'O'){
+			tag = "OR";
+		} else {
+			tag = "AND";
+		}
+		return tag + " Step[" + this.getDesc() + ", C="
+				+ String.format("%.2f", this.getCost()) + ", P="
+				+ String.format("%.3f", this.getProb()) + ", I="
+				+ String.format("%.2f", this.getImpact()) + "]";
+	}
 
 	/**
+	 * Tests equality between two AttackSteps
+	 * @param obj The object to test against
+	 * @return true if the AttackSteps are equal
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -125,5 +145,4 @@ public class AttackStep {
 			return false;
 		return true;
 	}
-	*/
 }

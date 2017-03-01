@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * @author Justin Schwab
  * @param <E> the element Type of the Linked Queue
  */
-public class Queue<E> {
+public class Queue<E> implements Cloneable{
 	
 	/** The number of elements in the queue */
 	private int size;
@@ -27,6 +27,7 @@ public class Queue<E> {
 			this.next = next;
 		}
 	}
+	
 	/**
 	 * Constructs the Linked Queue of size 0
 	 */
@@ -87,5 +88,35 @@ public class Queue<E> {
 	 */
 	public int size() {
 		return size;
+	}
+	
+	/**
+	 * Clones this Queue
+	 * @return A copy of this Queue
+	 */
+	@Override
+	public Queue<E> clone(){
+		Queue<E> copy = new Queue<E>();
+		for(int i = 0; i < this.size; i++){
+			E e = this.dequeue();
+			copy.enqueue(e);
+			this.enqueue(e);
+		}
+		return copy;
+	}
+
+	/**
+	 * Gets the first element without removing it.
+	 * This is useful for propagating values
+	 * @return The element at the front of the list
+	 */
+	public E peek() {
+		if(size == 0){
+			return null;
+		}else if(size == 1){
+			return tail.data;
+		} else{
+			return tail.next.data;
+		}
 	}
 }

@@ -22,12 +22,34 @@ public class AttackTree {
 	}
 	
 	/**
+	 * Produces a level-order traversal as a Queue
+	 * @return The level-order traversal
+	 */
+	public Queue<AttackStep> levelOrder(){
+		Queue<AttackStep> list = new Queue<AttackStep>();
+		Queue<AttackNode> Q = new Queue<AttackNode>();
+		if(this.root == null)
+			return list;
+		Q.enqueue(root);
+		while(!Q.isEmpty()){
+			AttackNode q = Q.dequeue();
+			list.enqueue(q.data);
+			Queue<AttackNode> children = q.getChildren();
+			while(!children.isEmpty()){
+				Q.enqueue(children.dequeue());
+			}		
+		}
+		return list;
+	}
+	
+	/**
 	 * Nodes that make up this AttackTree. Each Node
 	 * contains an AttackStep and a list of children
 	 * @author Justin Schwab
 	 *
 	 */
-	public class AttackNode{
+	public static class AttackNode{
+		
 		/** The AttackStep data associated with each node */
 		private AttackStep data;
 		/** The list of children for each node */
@@ -39,15 +61,38 @@ public class AttackTree {
 		 */
 		public AttackNode(AttackStep data){
 			this.data = data;
-			this.children = null;
+			this.children = new Queue<AttackNode>();
 		}
 		
 		/**
 		 * Adds an AttackStep to the tree as an AttackNode
-		 * @param s
+		 * @param n
 		 */
 		public void addChild(AttackNode n){
 			this.children.enqueue(n);
+		}
+		
+		/**
+		 * Adds an AttackStep to the tree 
+		 * @param s
+		 */
+		public void addChild(AttackStep s) {
+			this.children.enqueue(new AttackNode(s));
+		}
+		
+		/**
+		 * Gets the AttackStep data for this Node
+		 */
+		public AttackStep getData(){
+			return this.data;
+		}
+		
+		/**
+		 * Gets the children of this Node as a copy
+		 * @return The list of children for this Node
+		 */
+		public Queue<AttackNode> getChildren(){
+			return this.children.clone();
 		}
 	}
 }
