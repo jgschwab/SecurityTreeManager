@@ -58,7 +58,7 @@ public class LogEntry implements Comparable<LogEntry> {
 	@Override
 	public String toString(){
 		return "LogEntry[timestamp=" + timestamp.toString() + ", user="
-				+ user + ", description=" + desc + "]";
+				+ user + ", description=" + desc + "]\n";
 	}
 	
 	/**

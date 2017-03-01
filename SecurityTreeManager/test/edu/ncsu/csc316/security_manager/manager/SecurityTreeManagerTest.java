@@ -18,7 +18,7 @@ public class SecurityTreeManagerTest {
 	public void test() {
 		SecurityTreeManager stm = new SecurityTreeManager("input/sample-log.txt");
 		assertEquals("LogEntry[timestamp=2014/10/06 13:11:31, user=user5, "
-				+ "description=edit office visit information]",
+				+ "description=edit office visit information]\n",
 				stm.getLogEntriesForDate("10-06-2014"));
 		assertEquals("LevelOrder[\n" +
 				"   LogEntry[timestamp=2015/09/13 02:58:49, user=user2, description=save patient list]\n" +

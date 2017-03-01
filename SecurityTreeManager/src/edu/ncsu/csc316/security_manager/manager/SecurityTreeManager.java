@@ -176,7 +176,7 @@ public class SecurityTreeManager {
 		Queue<LogEntry> list = logTree.levelOrder();
 		StringBuilder sb = new StringBuilder();
 		while(!list.isEmpty()){
-			sb.append("   " + list.dequeue().toString() + "\n");
+			sb.append("   " + list.dequeue().toString());
 		}
 		return "LevelOrder[\n" + sb.toString() + "]";
 	}
@@ -283,10 +283,9 @@ public class SecurityTreeManager {
 	public String getLogEntriesForDate(String date){
 		Queue<LogEntry> inOrderList = logTree.lookUp(date);
 		StringBuilder sb = new StringBuilder();
-		while(inOrderList.size() > 1){
-			sb.append(inOrderList.dequeue().toString() + "\n");
+		while(inOrderList.size() > 0){
+			sb.append(inOrderList.dequeue().toString());
 		}
-		sb.append(inOrderList.dequeue().toString());
 		return sb.toString();
 	}
 }

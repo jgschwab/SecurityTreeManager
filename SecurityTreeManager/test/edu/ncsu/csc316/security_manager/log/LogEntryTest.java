@@ -26,16 +26,16 @@ public class LogEntryTest {
 		LogEntry le4 = new LogEntry(d2, "jgschwab", "this project is due");
 		
 		assertEquals("LogEntry[timestamp=1995/08/31 18:45:00, user="
-				+ "jgschwab, description=justin was born]", le1.toString());
+				+ "jgschwab, description=justin was born]\n", le1.toString());
 		
 		assertEquals("LogEntry[timestamp=1995/08/31 18:45:00, user="
-				+ "jgschwab, description=muh birthday]", le2.toString());
+				+ "jgschwab, description=muh birthday]\n", le2.toString());
 		
 		assertEquals("LogEntry[timestamp=1995/08/31 18:45:00, user="
-				+ "jtking, description=justin was born]", le3.toString());
+				+ "jtking, description=justin was born]\n", le3.toString());
 		
 		assertEquals("LogEntry[timestamp=2017/03/03 23:45:00, user="
-				+ "jgschwab, description=this project is due]", le4.toString());
+				+ "jgschwab, description=this project is due]\n", le4.toString());
 		
 		assertTrue(le1.compareTo(le1) == 0);
 		
