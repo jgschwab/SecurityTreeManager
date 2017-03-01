@@ -27,16 +27,16 @@ public class AttackTree {
 	 */
 	public Queue<AttackStep> levelOrder(){
 		Queue<AttackStep> list = new Queue<AttackStep>();
-		Queue<AttackNode> Q = new Queue<AttackNode>();
+		Queue<AttackNode> q = new Queue<AttackNode>();
 		if(this.root == null)
 			return list;
-		Q.enqueue(root);
-		while(!Q.isEmpty()){
-			AttackNode q = Q.dequeue();
-			list.enqueue(q.data);
-			Queue<AttackNode> children = q.getChildren();
+		q.enqueue(root);
+		while(!q.isEmpty()){
+			AttackNode n = q.dequeue();
+			list.enqueue(n.data);
+			Queue<AttackNode> children = n.getChildren();
 			while(!children.isEmpty()){
-				Q.enqueue(children.dequeue());
+				q.enqueue(children.dequeue());
 			}		
 		}
 		return list;
@@ -48,7 +48,7 @@ public class AttackTree {
 	 * @author Justin Schwab
 	 *
 	 */
-	public static class AttackNode{
+	public static class AttackNode {
 		
 		/** The AttackStep data associated with each node */
 		private AttackStep data;
@@ -66,7 +66,7 @@ public class AttackTree {
 		
 		/**
 		 * Adds an AttackStep to the tree as an AttackNode
-		 * @param n
+		 * @param n The AttackNode to add a child to
 		 */
 		public void addChild(AttackNode n){
 			this.children.enqueue(n);
@@ -74,7 +74,7 @@ public class AttackTree {
 		
 		/**
 		 * Adds an AttackStep to the tree 
-		 * @param s
+		 * @param s The AttackStep to add as a child node
 		 */
 		public void addChild(AttackStep s) {
 			this.children.enqueue(new AttackNode(s));
@@ -82,6 +82,7 @@ public class AttackTree {
 		
 		/**
 		 * Gets the AttackStep data for this Node
+		 * @return The AttackStep associated with this AttackNode
 		 */
 		public AttackStep getData(){
 			return this.data;

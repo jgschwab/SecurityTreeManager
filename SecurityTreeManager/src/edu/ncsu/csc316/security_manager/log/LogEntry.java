@@ -6,7 +6,7 @@ import edu.ncsu.csc316.security_manager.date.TimeStamp;
  * A Log entry object. Stored in the LogTree data structure
  * @author Justin Schwab
  */
-public class LogEntry implements Comparable<LogEntry>{
+public class LogEntry implements Comparable<LogEntry> {
 
 	/** The timestamp of this log entry */
 	private TimeStamp timestamp;

@@ -1,6 +1,11 @@
 package edu.ncsu.csc316.security_manager.date;
 
-public class Date implements Comparable<Date>{
+/**
+ * Represents a date, stored as a year, month, and day
+ * @author Justin Schwab
+ *
+ */
+public class Date implements Comparable<Date> {
 	
 	/** The year */
 	private int year;

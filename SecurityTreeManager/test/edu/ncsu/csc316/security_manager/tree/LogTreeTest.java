@@ -21,8 +21,9 @@ public class LogTreeTest {
 	 */
 	@Test
 	public void test() {
+		FileReader f = new FileReader();
 		LogTree logTree = new LogTree();
-		Queue<LogEntry> logs = FileReader.readLogFile("input/sample-log.txt");
+		Queue<LogEntry> logs = f.readLogFile("input/sample-log.txt");
 		while(!logs.isEmpty()){
 			logTree.add(new LogNode(logs.dequeue()));
 		}

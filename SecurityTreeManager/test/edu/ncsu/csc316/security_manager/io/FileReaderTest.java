@@ -22,15 +22,16 @@ public class FileReaderTest {
 	 */
 	@Test
 	public void test() {
+		FileReader f = new FileReader();
 		Queue<AttackStep> preorder = null;
 		try{
-			preorder = FileReader.readAttackTraversal("input/nonexistent.txt");
+			preorder = f.readAttackTraversal("input/nonexistent.txt");
 			fail();
 		} catch(IllegalArgumentException e){
 			//pass
 		}
 		
-		preorder = FileReader.readAttackTraversal("input/ddos-preorder.txt");
+		preorder = f.readAttackTraversal("input/ddos-preorder.txt");
 		
 		assertEquals(15, preorder.size());
 		
@@ -115,13 +116,13 @@ public class FileReaderTest {
 		
 		Queue<LogEntry> logs = null;
 		try{
-			logs = FileReader.readLogFile("input/FAIL.txt");
+			logs = f.readLogFile("input/FAIL.txt");
 			fail();
 		} catch(IllegalArgumentException e){
 			//pass
 		}
 		
-		logs = FileReader.readLogFile("input/sample-log.txt");
+		logs = f.readLogFile("input/sample-log.txt");
 		
 		LogEntry log1 = logs.dequeue();
 		assertEquals(0, new TimeStamp(2015, 9, 13, 2, 58, 49).compareTo(log1.getTimeStamp()));

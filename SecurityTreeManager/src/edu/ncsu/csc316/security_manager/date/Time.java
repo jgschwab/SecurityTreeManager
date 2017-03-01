@@ -1,6 +1,11 @@
 package edu.ncsu.csc316.security_manager.date;
 
-public class Time implements Comparable<Time>{
+/**
+ * Represents a time of day in hours, minutes, and seconds
+ * @author Justin Schwab
+ *
+ */
+public class Time implements Comparable<Time> {
 
 	/** The hour */
 	private int hour;

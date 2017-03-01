@@ -1,5 +1,10 @@
 package edu.ncsu.csc316.security_manager.date;
 
+/**
+ * Defines a timestamp object. It contains a date and time
+ * @author Justin Schwab
+ *
+ */
 public class TimeStamp implements Comparable<TimeStamp> {
 
 	/** The time of this timestamp */
@@ -95,6 +100,10 @@ public class TimeStamp implements Comparable<TimeStamp> {
 		return time.getSec();
 	}
 
+	/**
+	 * Returns a String representation of this TimeStamp
+	 * @return this TimeStamp as a String
+	 */
 	public String toString(){
 		return this.getDate().toString() + " " + this.getTime().toString();
 	}

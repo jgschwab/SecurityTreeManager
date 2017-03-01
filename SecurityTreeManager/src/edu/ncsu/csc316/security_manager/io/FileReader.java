@@ -17,17 +17,34 @@ import edu.ncsu.csc316.security_manager.log.LogEntry;
  * @author Justin Schwab
  */
 public class FileReader {
+	
+	/**
+	 * Doesn't actually do anything
+	 */
+	public FileReader(){
+		/* 
+		 * Not having a constructor was preventing me from
+		 * attaining full method coverage, so now we have 
+		 * this useless constructor that I use all over this
+		 * software just so the teaching staff test cases
+		 * will run. <sarcasm>I'm beyond thrilled at how 
+		 * much sense this makes.</sarcasm>
+		*/
+	}
+	
 	/**
 	 * Reads an Attack tree traversal file; returns a
 	 * Queue of AttackNodes to use for building
 	 * the AttackTree
+	 * @param fileName The name of the traversal file
+	 * @return The list of AttackSteps represented in the file
 	 * @throws FileNotFoundException 
 	 */
-	public static Queue<AttackStep> readAttackTraversal(String fileName) {
+	public Queue<AttackStep> readAttackTraversal(String fileName) {
 		Scanner fileScan = null;
 		try{
 			fileScan = new Scanner(new File(fileName));
-		}catch(FileNotFoundException e){
+		} catch(FileNotFoundException e){
 			throw new IllegalArgumentException("File not found");
 		}
 		
@@ -67,14 +84,16 @@ public class FileReader {
 	 * Reads a log entry file; returns a
 	 * Queue of LogEntries to use for building
 	 * the LogTree
+	 * @param fileName The name of the log file
+	 * @return The list of logs from the file
 	 * @throws FileNotFoundException 
 	 */
-	public static Queue<LogEntry> readLogFile(String fileName) {
+	public Queue<LogEntry> readLogFile(String fileName) {
 		
 		Scanner fileScan = null;
 		try{
 			fileScan = new Scanner(new File(fileName));
-		}catch(FileNotFoundException e){
+		} catch(FileNotFoundException e){
 			throw new IllegalArgumentException("File not found");
 		}
 		
@@ -121,7 +140,7 @@ public class FileReader {
 		timeScan.close();
 		timeScan = new Scanner(hms);
 		timeScan.useDelimiter(":");
-		Time time = new Time(timeScan.nextInt(),timeScan.nextInt(),timeScan.nextInt());
+		Time time = new Time(timeScan.nextInt(), timeScan.nextInt(), timeScan.nextInt());
 		timeScan.close();
 		return new TimeStamp(date, time);
 	}

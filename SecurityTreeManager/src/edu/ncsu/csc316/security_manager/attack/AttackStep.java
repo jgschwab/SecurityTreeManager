@@ -29,7 +29,7 @@ public class AttackStep {
 		if(tag != 'G' && tag != 'O' && tag != 'A'){
 			throw new IllegalArgumentException("Invalid AttackStep tag");
 		}
-		this.tag= tag;
+		this.tag = tag;
 		this.prob = prob;
 		this.impact = impact;
 		this.cost = cost;
@@ -94,7 +94,7 @@ public class AttackStep {
 
 	/**
 	 * Gets the description of this AttackStep
-	 * @return
+	 * @return The description of this AttackStep
 	 */
 	public String getDesc() {
 		return desc;
@@ -102,15 +102,15 @@ public class AttackStep {
 	
 	@Override
 	public String toString(){
-		String tag;
+		String tagStr;
 		if(this.getTag() == 'G'){
-			tag = "GOAL";
+			tagStr = "GOAL";
 		} else if(this.getTag() == 'O'){
-			tag = "OR";
+			tagStr = "OR";
 		} else {
-			tag = "AND";
+			tagStr = "AND";
 		}
-		return tag + " Step[" + this.getDesc() + ", C="
+		return tagStr + " Step[" + this.getDesc() + ", C="
 				+ String.format("%.2f", this.getCost()) + ", P="
 				+ String.format("%.3f", this.getProb()) + ", I="
 				+ String.format("%.2f", this.getImpact()) + "]";

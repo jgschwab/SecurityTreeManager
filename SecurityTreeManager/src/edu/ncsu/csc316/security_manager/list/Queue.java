@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * @author Justin Schwab
  * @param <E> the element Type of the Linked Queue
  */
-public class Queue<E> implements Cloneable{
+public class Queue<E> implements Cloneable {
 	
 	/** The number of elements in the queue */
 	private int size;
@@ -19,9 +19,16 @@ public class Queue<E> implements Cloneable{
 	 * @author Justin Schwab
 	 * @param <T>
 	 */
-	public class Node<T>{
+	public class Node<T> {
+		/** The data in this node */
 		private T data;
+		/** The next element in this queue */
 		private Node<T> next;
+		/**
+		 * Constructs a new generic node
+		 * @param data The data to instantiate the node with
+		 * @param next A reference to the Node that this should point to
+		 */
 		public Node(T data, Node<T> next){
 			this.data = data;
 			this.next = next;
@@ -113,7 +120,7 @@ public class Queue<E> implements Cloneable{
 	public E peek() {
 		if(size == 0){
 			return null;
-		}else if(size == 1){
+		} else if(size == 1){
 			return tail.data;
 		} else{
 			return tail.next.data;

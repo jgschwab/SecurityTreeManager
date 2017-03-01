@@ -25,7 +25,7 @@ public class SecurityTreeManager {
 	
 	/**
 	 * Builds The attack tree using a preorder list and postorder list
-	 * @param preorder The preorder list to build the attack tree from
+	 * @param preOrder The preorder list to build the attack tree from
 	 * @param postOrder The postorder list to build the attack tree from
 	 */
 	public void buildAttackTree(Queue<AttackStep> preOrder, Queue<AttackStep> postOrder){
@@ -38,8 +38,8 @@ public class SecurityTreeManager {
 			post[i] = postOrder.dequeue();
 		}
 		if(pre.length == 1){
-			atkTree = new AttackTree(new AttackStep(pre[0].getTag(),pre[0].getProb(),
-					pre[0].getImpact(),pre[0].getCost(),pre[0].getDesc()));
+			atkTree = new AttackTree(new AttackStep(pre[0].getTag(), pre[0].getProb(),
+					pre[0].getImpact(), pre[0].getCost(), pre[0].getDesc()));
 		} else{
 			atkTree = new AttackTree(pre[0]);
 			pre = subArray(pre, 1, pre.length - 1);
@@ -116,8 +116,9 @@ public class SecurityTreeManager {
      * @param postOrder - the path to the postOrder traversal file
      */
 	public SecurityTreeManager(String preOrder, String postOrder){
-		Queue<AttackStep> pre = FileReader.readAttackTraversal(preOrder);
-		Queue<AttackStep> post = FileReader.readAttackTraversal(postOrder);
+		FileReader f = new FileReader();
+		Queue<AttackStep> pre = f.readAttackTraversal(preOrder);
+		Queue<AttackStep> post = f.readAttackTraversal(postOrder);
 		buildAttackTree(pre, post);
 	}
 	
@@ -127,8 +128,9 @@ public class SecurityTreeManager {
      * @param filePath - the path to the log entry file
      */
 	public SecurityTreeManager(String filePath){
+		FileReader f = new FileReader();
 		logTree = new LogTree();
-		Queue<LogEntry> logs = FileReader.readLogFile(filePath);
+		Queue<LogEntry> logs = f.readLogFile(filePath);
 		while(!logs.isEmpty()){
 			logTree.add(new LogNode(logs.dequeue()));
 		}
@@ -255,7 +257,7 @@ public class SecurityTreeManager {
 				cost += (child.getData().getCost() * child.getData().getProb());
 				prob += child.getData().getProb();
 			}
-			n.getData().setCost(cost/prob);
+			n.getData().setCost(cost / prob);
 			double impact = 0;
 			for(int i = 0; i < children.size(); i++){
 				AttackNode child = children.dequeue();

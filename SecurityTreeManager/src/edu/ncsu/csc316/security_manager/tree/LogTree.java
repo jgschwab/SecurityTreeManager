@@ -46,13 +46,13 @@ public class LogTree {
 		if(n.data.compareTo(root.data) < 0){ // smaller than root
 			if(root.left == null){
 				root.left = n;
-			}else{
+			} else{
 				addHelper(n, root.left);
 			}
 		} else if(n.data.compareTo(root.data) > 0){
 			if(root.right == null){
 				root.right = n;
-			}else{
+			} else{
 				addHelper(n, root.right);
 			}
 		} else{
@@ -66,7 +66,7 @@ public class LogTree {
 	 * 
 	 * @author Justin Schwab
 	 */
-	public static class LogNode{
+	public static class LogNode {
 		/** The LogEntry data associated with this node */
 		private LogEntry data;
 		/** The left child of this node */
@@ -86,7 +86,7 @@ public class LogTree {
 	/**
 	 * Searches the LogTree for all entries on a certain
 	 * day, expressed by the parameterized String
-	 * @param date The date to find entries for
+	 * @param dateStr The date to find entries for
 	 * @return The list of entries from that day
 	 */
 	public Queue<LogEntry> lookUp(String dateStr) {
@@ -103,13 +103,13 @@ public class LogTree {
 			if(date.compareTo(n.data.getTimeStamp().getDate()) < 0){
 				if(n.left == null){
 					return list;
-				}else{
+				} else{
 					n = n.left;
 				}
-			}else if(date.compareTo(n.data.getTimeStamp().getDate()) > 0){
+			} else if(date.compareTo(n.data.getTimeStamp().getDate()) > 0){
 				if(n.right == null){
 					return list;
-				}else{
+				} else{
 					n = n.right;
 				}
 			}
@@ -139,17 +139,17 @@ public class LogTree {
 	 */
 	public Queue<LogEntry> levelOrder() {
 		Queue<LogEntry> list = new Queue<LogEntry>();
-		Queue<LogNode> Q = new Queue<LogNode>();
+		Queue<LogNode> q = new Queue<LogNode>();
 		if(root == null)
 			return list;
-		Q.enqueue(root);
-		while(!Q.isEmpty()){
-			LogNode q = Q.dequeue();
-			list.enqueue(q.data);
-			if(q.left != null)
-				Q.enqueue(q.left);
-			if(q.right != null)
-				Q.enqueue(q.right);			
+		q.enqueue(root);
+		while(!q.isEmpty()){
+			LogNode n = q.dequeue();
+			list.enqueue(n.data);
+			if(n.left != null)
+				q.enqueue(n.left);
+			if(n.right != null)
+				q.enqueue(n.right);			
 		}
 		return list;
 	}
