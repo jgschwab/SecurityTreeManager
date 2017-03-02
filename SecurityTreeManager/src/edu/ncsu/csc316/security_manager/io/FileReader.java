@@ -12,7 +12,7 @@ import edu.ncsu.csc316.security_manager.list.Queue;
 import edu.ncsu.csc316.security_manager.log.LogEntry;
 
 /**
- * Class that contains static methods for 
+ * Class that contains methods for 
  * reading files for the attack tree and log tree
  * @author Justin Schwab
  */
@@ -38,7 +38,6 @@ public class FileReader {
 	 * the AttackTree
 	 * @param fileName The name of the traversal file
 	 * @return The list of AttackSteps represented in the file
-	 * @throws FileNotFoundException 
 	 */
 	public Queue<AttackStep> readAttackTraversal(String fileName) {
 		Scanner fileScan = null;
@@ -86,7 +85,6 @@ public class FileReader {
 	 * the LogTree
 	 * @param fileName The name of the log file
 	 * @return The list of logs from the file
-	 * @throws FileNotFoundException 
 	 */
 	public Queue<LogEntry> readLogFile(String fileName) {
 		

@@ -82,7 +82,7 @@ public class SecurityTreeManager {
 	}
 
 	/**
-	 * FUCK SHIT I HOPE THIS WORKS
+	 * Builds an AttackTree with the given traversal lists
 	 * @param pre The pre-order traversal of the tree
 	 * @param post The post-order traversal of the tree
 	 * @param current The current node that this algorithm is inspecting

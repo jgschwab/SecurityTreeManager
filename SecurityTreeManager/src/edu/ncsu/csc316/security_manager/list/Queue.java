@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 /**
  * Defines a Circular-Linked-List-based Queue
  * @author Justin Schwab
- * @param <E> the element Type of the Linked Queue
+ * @param <E> the element type of the Linked Queue
  */
 public class Queue<E> implements Cloneable {
 	
@@ -17,7 +17,7 @@ public class Queue<E> implements Cloneable {
 	/**
 	 * Defines the Node in this linked queue
 	 * @author Justin Schwab
-	 * @param <T>
+	 * @param <T> The element type of the Node
 	 */
 	public class Node<T> {
 		/** The data in this node */
